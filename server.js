@@ -61,6 +61,19 @@ app.get('/menu', (req, res) => {
   res.render('menu', { menu: RESTAURANT.menu });
 });
 
+app.get('/menu/:category', (req, res) => {
+  const category = req.params.category.toLowerCase();
+
+  const allowed = ['mains', 'desserts', 'sides'];
+  
+  if (!allowed.includes(category)) {
+    return res.status(404).send('Category not found');
+  }
+  const menuItems = RESTAURANT.menu.filter(item => item.category === category);
+  const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+  res.render('category', { menuItems, categoryName });
+});
+
 app.listen(3000, () => {
   console.log("listen to port 3000")
 })
