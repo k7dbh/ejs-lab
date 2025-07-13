@@ -61,7 +61,6 @@ app.get('/menu', (req, res) => {
   res.render('menu', { menu: RESTAURANT.menu });
 });
 
-
 app.listen(3000, () => {
   console.log("listen to port 3000")
 })
